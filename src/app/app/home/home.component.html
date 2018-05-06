@@ -1,0 +1,10 @@
+<div id="body" [hidden]="loggedIn">
+  <p><a href="/auth/login">Log in</a> to access your content.</p>
+</div>
+<div id="body" [hidden]="!loggedIn">
+  <p>
+    home works!
+    Session_id = {{ session_id }}<br/>
+    loggedIn={{ loggedIn }}<br/>
+  </p>  
+</div>

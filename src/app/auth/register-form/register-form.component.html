@@ -1,0 +1,41 @@
+<div class="container">
+  <nav>
+    <a routerLink="/auth/register">Register</a>
+    <a routerLink="/auth/login">Login</a>
+  </nav>
+  <div [hidden]="errorMessage">
+    <div [hidden]="registered">
+      <div [hidden]="submitted">
+        <h1>Registration</h1>
+        <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" required
+              [(ngModel)]="model.email" name="email"
+              #email="ngModel">
+            <div [hidden]="email.valid || email.pristine"
+              class="alert alert-danger">
+              Email is required
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-success" (click)="register()" [disabled]="!registerForm.form.valid">Register</button>
+        </form>
+      </div>
+
+      <div [hidden]="!submitted">
+        <h2>Thank you!</h2>
+        <p>We are processing your request...</p>
+      </div>
+      </div>
+    <div [hidden]="!registered">
+      <h2>You are now Registered</h2>
+      <p>An email was sent to you with instructions to activate your account.</p>
+      <p>You're may close this page.</p>
+    </div>
+  </div>
+  <div [hidden]="!errorMessage">
+    <h2>Registration Error</h2>
+    <p>{{errorMessage}}</p>
+  </div>
+</div>

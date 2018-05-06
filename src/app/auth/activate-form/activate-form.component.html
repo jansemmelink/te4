@@ -1,0 +1,50 @@
+<div class="container">
+  <nav>
+      <a routerLink="/auth/register">Register</a>
+      <a routerLink="/auth/login">Login</a>
+  </nav>
+  <div [hidden]="submitted">
+      <h1>Account Activation</h1>
+      <form (ngSubmit)="onSubmit()" #activateForm="ngForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email" required
+          [(ngModel)]="model.email" name="email"
+          #email="ngModel">
+          <div [hidden]="email.valid || email.pristine"
+            class="alert alert-danger">
+            Email is required
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">New Password</label>
+        <input type="text" class="form-control" id="password" required
+          [(ngModel)]="model.password" name="password"
+          #password="ngModel">
+          <div [hidden]="password.valid || password.pristine"
+            class="alert alert-danger">
+            Password is required
+          </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirm">Confirm Password</label>
+        <input type="text" class="form-control" id="confirm" required
+          [(ngModel)]="model.confirm" name="confirm"
+          #confirm="ngModel">
+          <div [hidden]="confirm.valid || confirm.pristine"
+            class="alert alert-danger">
+            Repeat the same password
+          </div>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!activateForm.form.valid">Activate</button>
+    </form>
+  </div>
+  <div [hidden]="!submitted">
+    <h2>Thank you!</h2>
+    <p>Please wait while we process your request...</p>
+  </div>
+</div>
+  

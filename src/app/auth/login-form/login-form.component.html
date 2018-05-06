@@ -1,0 +1,51 @@
+<div class="container">
+  <nav>
+    <a routerLink="/auth/register">Register</a>
+    <a routerLink="/auth/login">Login</a>
+  </nav>
+  <div [hidden]="errorMessage">
+    <div [hidden]="loggedin">
+      <div [hidden]="submitted">
+        <h1>Login</h1>
+        <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" required
+              [(ngModel)]="model.email" name="email"
+              #email="ngModel">
+            <div [hidden]="email.valid || email.pristine"
+              class="alert alert-danger">
+              Email is required
+            </div>
+          </div>
+    
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="text" class="form-control" id="password" required
+              [(ngModel)]="model.password" name="password"
+              #password="ngModel">
+            <div [hidden]="password.valid || password.pristine"
+              class="alert alert-danger">
+              Password is required
+            </div>
+          </div>
+    
+          <button type="submit" class="btn btn-success" (click)="login()" [disabled]="!loginForm.form.valid">Login</button>
+        </form>
+      </div>
+
+      <div [hidden]="!submitted">
+        <h2>Thank you!</h2>
+        <p>Please wait while we process your request...</p>
+      </div>
+    </div>
+    <div [hidden]="!loggedin">
+      <h2>You are now Logged In</h2>
+      <p>Redirecting...</p>
+    </div>
+  </div>
+  <div [hidden]="!errorMessage">
+    <h2>Failed to Log In</h2>
+    <p>{{errorMessage}}</p>
+  </div>
+</div>

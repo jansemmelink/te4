@@ -1,0 +1,10 @@
+<div class="container">
+  <div [hidden]="editing">
+    <h1>Personal Profile</h1>
+    <p><label for="name">Name</label>{{ person.Name }}</p>
+  </div>
+
+  <div [hidden]="!editing">
+    <h1>Editing... Personal Profile</h1>
+  </div>
+</div>

@@ -1,20 +1,35 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div id="header">
+    <div id="user" [hidden]="loggedIn">
+        <a href="/auth/register">Register</a>
+        <a href="/auth/login">Login</a>
+    </div>
+    <div id="user" [hidden]="!loggedIn">
+        <a href="/person/profile">Profile</a>
+        <a href="/auth/login" (click)="logout()">Logout</a>
+        Session: {{ session_id }}<br/>
+    </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
+<div id="menu" [hidden]="!loggedIn">
+    <div class="dropdown">
+        <span><a href="/home">Home</a></span>
+    </div>
+
+    <div class="dropdown">
+        <span>Create</span>
+        <div class="dropdown-content">
+        <p><a href="/group">Group</a></p>
+        <p><a href="/country">Country</a></p>
+        <p><a href="/event">Event</a></p>
+        </div>
+    </div>
+</div>
+
+<div style="text-align:center">
+    <!--app-register-form></app-register-form-->
+    <router-outlet></router-outlet>
+</div>
+
+<div id="footer">
+        Page Footer...
+</div>
